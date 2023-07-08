@@ -1,0 +1,20 @@
+.orderFooter {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+}
+
+.orderProgress {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.dateSeparator {
+    height: 56px;
+    padding-top: 1.3rem;
+    font-size: x-large;
+}
+
+.orderTotal {
+    font-size: large;
+    text-align: right;
+}

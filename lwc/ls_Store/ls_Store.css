@@ -1,0 +1,19 @@
+.custom-box {
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    border-radius: 0.5rem;
+}
+
+.productName {
+    font-weight: 700;
+    height: 40px;
+}
+
+.footerContainer {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.productPrice {
+    text-align: left;
+    font-size: large;
+}

@@ -1,0 +1,44 @@
+<template>
+    <div class="cart-box">
+        <lightning-card  variant="Narrow" class="cartCard" title="Cart" icon-name="standard:webcart">
+            <template if:false={cartHasProducts}>
+                <p class="emptyCart">Your Cart is Empty.</p>
+            </template>
+            <template if:true={cartHasProducts}>
+                <lightning-layout multiple-rows>
+                    <template for:each={cartProducts} for:item="product">
+                        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="12" key={product.key}>
+                            <div class="cartProduct">
+                                <div>
+                                    <lightning-formatted-rich-text class="cartProductImage" value={product.Product_Image__c}></lightning-formatted-rich-text>
+                                </div>
+                                <div class="custom-box cartProductName">
+                                    <p title={product.Name}>{product.Name}</p>
+                                    <p>Size:{product.selectedSize}</p>
+                                    <p>&#8377; {product.price}</p>
+                                </div>
+                                <div class="custom-box cartProductSize">
+                                    <lightning-button-icon variant="bare" size="large" data-id={product.Id} data-size={product.selectedSize} icon-name="utility:delete" alternative-text="remove from cart" onclick={handleCartDelete}></lightning-button-icon>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+                <div class="cartFooter" slot="footer">
+                    <div class="productPrice">
+                      Total Amount:  &#8377; {cartTotal}
+                    </div>
+                    <div>
+                        <lightning-button variant="neutral" label="Make an Order" data-valid={cartHasProducts} title="Submits your order" onclick={handleMakeOrder}></lightning-button>
+                    </div>
+                </div>
+            </template>
+            <p if:false={cartHasProducts} slot="footer">
+                <lightning-button variant="neutral" label="Make an Order" data-valid={cartHasProducts} title="Submits your order" disabled></lightning-button>
+            </p>
+        </lightning-card>
+    </div>
+    <div if:true={showOrderModal}>
+        <c-ls_-Order cart-total={cartTotal} onsubmitorder={handleSubmitOrder} onclosemodal={handlecloseModal}></c-ls_-Order>
+    </div>
+</template>

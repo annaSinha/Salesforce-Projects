@@ -1,0 +1,33 @@
+<template>
+    <lightning-layout multiple-rows>
+        <template for:each={productList} for:item="product">
+            <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="4" large-device-size="4" key={product.Id} >
+                <div class="custom-box">
+                    <lightning-card  variant="Narrow">
+                        <lightning-formatted-rich-text class="productImage" value={product.Product_Image__c}></lightning-formatted-rich-text>
+                        <p class="slds-p-horizontal_small">
+                            <lightning-radio-group 
+                            name={product.Id}
+                            label="Size"
+                            options={product.options}
+                            value={value}
+                            type="button"
+                            onchange={updateSelectedSize}>
+                            </lightning-radio-group>
+                        </p>
+                        <p class="slds-p-horizontal_small productName">{product.Name}</p>
+                        <!-- <p class="slds-p-horizontal_small">&#8377; {product.price}</p> -->
+                        <div class="footerContainer" slot="footer">
+                            <div class="productPrice">
+                                &#8377; {product.price}
+                            </div>
+                            <div>
+                                <lightning-button variant="neutral" data-id={product.Id} label="Add to Cart" title="titleName" onclick={handleAddToCart}></lightning-button>
+                            </div>
+                        </div>
+                    </lightning-card>
+                </div>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+</template>

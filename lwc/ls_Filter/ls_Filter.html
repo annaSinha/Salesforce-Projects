@@ -1,0 +1,20 @@
+<template>
+	<div class="filter-box">
+		<lightning-card variant="Narrow" class="filterCard">
+			<!-- title="Filter Products" icon-name="standard:filter" -->
+			<lightning-layout multiple-rows class="filterLayout">
+				<lightning-layout-item size="4" padding="around-small" if:true={categoryPicklistValues.data}>
+					<lightning-checkbox-group class="filterCategory" name="category" label="Filter by Category" options={categoryPicklistValues.data.values}
+						value={category} onchange={handleChange}>
+					</lightning-checkbox-group> 
+				</lightning-layout-item>
+
+				<lightning-layout-item size="3" padding="around-small" if:true={sizesPicklistValues.data}>
+					<lightning-combobox name="size" class="filterSizeLabel" label="Filter by Size" value={size} placeholder="Select Size"
+						options={sizesPicklistValues.data.values} onchange={handleChange}>
+					</lightning-combobox>
+				</lightning-layout-item>
+			</lightning-layout>
+		</lightning-card>
+	</div>
+</template>
